@@ -21,6 +21,27 @@ I built these scripts to work on Fedora (specifically F23). If you run another
 distribution and run in to issues, check that the utilities and paths that are
 called in scripts/bootstrap and scripts/build are the same on your system. YMMV.
 
+### Dependencies
+
+There are a few dependencies you need to install before things here will work.
+
+These are the packages you'll need installed on Fedora/CentOS:
+
+  * docker-engine
+  * rubygems
+
+You will also need to install some gems:
+
+  * fpm
+  * fpm-cookery
+
+If you are on Fedora, you can simply run the following command:
+
+    sudo dnf install -y docker-engine rubygems && gem install fpm fpm-cookery
+
+If you're on another platform the gem names should be the same but you might
+have to search around for matching package names.
+
 ### Setup
 
 Clone this git repository somewhere in your home directory (eg. $HOME/git). Once
