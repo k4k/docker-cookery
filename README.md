@@ -35,7 +35,7 @@ have a "pkg" directory inside of the recipe directory containing your rpm.
 
 ### Caveats
 
-  * It's currently not possible to run `build` from the recipe dir.
+  * It's currently not possible to run `build` from within a specific recipe dir.
     - I would like to fix this down the road
 
 ## TODO
