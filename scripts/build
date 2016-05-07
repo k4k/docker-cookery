@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+#
+# Build recipe with docker
+
+Usage() {
+  echo "$(basename $0) [-v] -p <recipe_dir> [-i <docker_image>]"
+  exit 1
+}
+
+Version() {
+  echo -e "I'm a little build script short and stout.\nI've got no version, pout, pout, pout"
+  exit 0
+}
+
+default_image="fpm-builder"
+
+[[ $# < 1 ]] && Usage
+
+while getopts ':vcp:i:' opt; do
+  case $opt in
+    v)
+      Version
+      ;;
+    c)
+      clean="1"
+      ;;
+    p)
+      recipe_dir=$OPTARG    #Recipe dir location relative to $PWD
+      ;;
+    i)
+      image=$OPTARG    #Defaults to $default_builder if not given
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+    :)
+      echo "Option -$OPTARG requires an argument." >&2
+      exit 1
+  esac
+done
+
+[[ -z "$recipe_dir" ]] && Usage
+[[ -z "$image" ]] && image="$default_image"
+
+# Build stuff
+ln -s Dockerfile "${recipe_dir}"/Dockerfile
+cd "$recipe_dir"
+[[ "$clean" == "1" ]] && fpm-cook clean
+docker run -it --rm -v "$PWD":/data "$image"
+unlink Dockerfile
+
+exit 0

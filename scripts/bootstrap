@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+#
+# Create docker container
+# Symlink scripts/build to top level of recipe dir
+
+default_builder="fpm-builder"
+dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+root_dir="$(dirname $dir)"
+docker build -t "$default_builder" .
+ln -s "${dir}"/build "${root_dir}"/build
