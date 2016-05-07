@@ -12,9 +12,10 @@ directory.
 
 ## Command Options
 
-  * -v :: *Show version number*
-  * -p :: *Specify the recipe directory to build from*
-  * -i :: *Optional flag to define custom build container*
+  * -v :: Show version number
+  * -c :: Cleanup build directory *(requires fpm-cookery on local machine)*
+  * -p :: Specify the recipe directory to build from
+  * -i :: Optional flag to define custom build container
   
 ## Examples
 

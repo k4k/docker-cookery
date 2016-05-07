@@ -30,7 +30,10 @@ These are the packages you'll need installed on Fedora/CentOS:
   * docker-engine
   * rubygems
 
-You will also need to install some gems:
+The build script provides an optional `-c` flag. This flag calls `fpm-cook clean`
+on the local system to clean up any old build info. If you never use this flag
+you can get away with not installing the gems below but I strongly recommend
+that you do so that you can take full advantage of the provided functionality.
 
   * fpm
   * fpm-cookery

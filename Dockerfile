@@ -17,8 +17,6 @@ RUN yum update -y && yum install -y \
 
 
 RUN echo "gem: --no-ri --no-rdoc" >/etc/gemrc
-#RUN gem install fpm -v 1.5.0
-#RUN gem install fpm-cookery -v 0.31.0
 RUN gem install fpm
 RUN gem install fpm-cookery
 
