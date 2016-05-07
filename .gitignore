@@ -1,0 +1,10 @@
+# Ignore Everything
+*
+
+# Except
+!Dockerfile
+!scripts/
+!scripts/*
+!README.md
+!BUILDING.md
+!.gitignore
