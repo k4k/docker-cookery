@@ -1,0 +1,34 @@
+FROM fedora:23
+
+MAINTAINER Ted Wood <ted@xy0.org>
+
+ENV REFRESHED_AT 2016-04-07
+
+RUN dnf update -y && dnf install -y \
+        curl \
+        gcc \
+        git \
+        make \
+        rpm-build \
+        ruby \
+        ruby-devel \
+        tar \
+        zlib
+
+
+RUN echo "gem: --no-ri --no-rdoc" >/etc/gemrc
+RUN gem update
+RUN gem install fpm fpm-cookery
+
+# Workaround fpm-cookery Ruby 2.2 issue
+#RUN curl -sSL https://get.rvm.io | bash
+#ENV PATH /usr/local/rvm/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+#RUN /bin/bash -l -c "rvm requirements"
+#RUN /bin/bash -l -c "rvm install 2.1"
+#RUN /bin/bash -l -c "rvm --default use 2.1"
+
+
+VOLUME /data
+WORKDIR /data
+
+CMD ["fpm-cook", "package", "--debug", "--tmp-root", "/tmp", "recipe.rb"]

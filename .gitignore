@@ -2,7 +2,8 @@
 *
 
 # Except
-!Dockerfile
+!Dockerfile.*
+!dockerfiles/
 !scripts/
 !scripts/*
 !README.md
